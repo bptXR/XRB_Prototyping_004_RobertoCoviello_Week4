@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 167681976}
   - component: {fileID: 167681975}
   - component: {fileID: 167681974}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 246584925}
   - component: {fileID: 246584924}
   - component: {fileID: 246584927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 316433483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 447334103}
   - component: {fileID: 447334102}
   - component: {fileID: 447334101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightHand Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1686,7 +1686,7 @@ GameObject:
   - component: {fileID: 492000024}
   - component: {fileID: 492000023}
   - component: {fileID: 492000022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: XR Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2165,7 +2165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1211267815}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Attach Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2664,7 +2664,7 @@ GameObject:
   - component: {fileID: 8734238119893124880}
   - component: {fileID: 57880154}
   - component: {fileID: 8734238119893124879}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: MasterSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
