@@ -22,8 +22,7 @@ public class StasisObject : MonoBehaviour
     private Transform arrow;
     private Renderer renderer;
 
-    [Header("Particles")]
-    public Transform startparticleGroup;
+    [Header("Particles")] public Transform startparticleGroup;
     public Transform endParticleGroup;
 
     private void Start()
@@ -55,13 +54,13 @@ public class StasisObject : MonoBehaviour
 
             startparticleGroup.LookAt(FindObjectOfType<StasisCharacter>().transform);
             ParticleSystem[] particles = startparticleGroup.GetComponentsInChildren<ParticleSystem>();
-            foreach(ParticleSystem p in particles)
+            foreach (ParticleSystem p in particles)
             {
                 p.Play();
             }
         }
 
-        if(!state)
+        if (!state)
         {
             StopAllCoroutines();
             DOTween.KillAll();
@@ -85,16 +84,16 @@ public class StasisObject : MonoBehaviour
             rb.AddForceAtPosition(direction * accumulatedForce, hitPoint, ForceMode.Impulse);
             accumulatedForce = 0;
 
-            trail.startColor = particleColor; trail.endColor = particleColor;
+            trail.startColor = particleColor;
+            trail.endColor = particleColor;
             trail.emitting = true;
-            trail.DOTime(0, 5).OnComplete(()=>trail.emitting = false);
+            trail.DOTime(0, 5).OnComplete(() => trail.emitting = false);
         }
     }
 
     public void AccumulateForce(float amount, Vector3 point)
     {
-        if (!activated)
-            return;
+        if (!activated) return;
 
         arrow.gameObject.SetActive(true);
         float scale = Mathf.Min(arrow.localScale.z + .3f, 1.8f);
@@ -106,8 +105,8 @@ public class StasisObject : MonoBehaviour
         direction = transform.position - hitPoint;
         transform.GetChild(0).rotation = Quaternion.LookRotation(direction);
 
-        Color c = Color.Lerp(normalColor, finalColor, accumulatedForce/50);
-        transform.GetChild(0).GetComponentInChildren<Renderer>().material.SetColor("_Color",c);
+        Color c = Color.Lerp(normalColor, finalColor, accumulatedForce / 50);
+        transform.GetChild(0).GetComponentInChildren<Renderer>().material.SetColor("_Color", c);
         renderer.material.SetColor("_EmissionColor", c);
         particleColor = c;
     }
@@ -130,13 +129,15 @@ public class StasisObject : MonoBehaviour
             s.AppendInterval(.1f);
             s.Append(renderer.material.DOFloat(.2f, "_StasisAmount", .05f));
         }
-
+        
         SetStasis(false);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position - direction);
+        var transform1 = transform;
+        var position = transform1.position;
+        Gizmos.DrawLine(position, position - direction);
     }
 }
