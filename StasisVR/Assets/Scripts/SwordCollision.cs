@@ -6,7 +6,6 @@ public class SwordCollision : MonoBehaviour
     [Header("Parameters")] 
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Vector3 hitPoint;
-    [SerializeField] private Rigidbody _rigidbody;
     
     private float _collisionForce = 3;
 
@@ -15,7 +14,6 @@ public class SwordCollision : MonoBehaviour
     [SerializeField] private GameObject stasisHitParticle;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip hitSound;
-    
 
     private void OnTriggerEnter(Collider other)
     {

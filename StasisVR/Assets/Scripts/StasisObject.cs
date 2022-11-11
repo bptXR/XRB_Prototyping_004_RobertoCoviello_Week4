@@ -23,7 +23,6 @@ public class StasisObject : MonoBehaviour
     private AudioSource _audioSource;
     private Rigidbody _rigidbody;
     private TrailRenderer _trailRenderer;
-    
     private MeshRenderer _renderer;
 
     [Header("Particles")] 
@@ -51,46 +50,52 @@ public class StasisObject : MonoBehaviour
 
         _renderer.material.SetFloat(StasisAmount, 10);
         _renderer.material.SetFloat(NoiseAmount, noise);
+        _renderer.material.DOFloat(1, NoiseAmount, 0.5f);
 
-        if (state)
+        switch (state)
         {
-            _audioSource.PlayOneShot(stasisStart);
-            _renderer.material.SetColor(EmissionColor, normalColor);
-            StartCoroutine(StasisWait());
-            
-            startParticleGroup.LookAt(playerPosition);
-            ParticleSystem[] particles = startParticleGroup.GetComponentsInChildren<ParticleSystem>();
-            foreach (ParticleSystem p in particles)
+            case true:
             {
-                p.Play();
-            }
-        }
-
-        if (!state)
-        {
-            StopAllCoroutines();
-            DOTween.KillAll();
-            transform.GetChild(0).gameObject.SetActive(false);
-            _renderer.material.SetFloat(StasisAmount, 0);
-
-            endParticleGroup.LookAt(playerPosition);
-            ParticleSystem[] particles = endParticleGroup.GetComponentsInChildren<ParticleSystem>();
-            foreach (ParticleSystem p in particles)
-            {
-                p.Play();
-            }
-
-            if (accumulatedForce < 0) return;
+                _audioSource.PlayOneShot(stasisStart);
+                _renderer.material.SetColor(EmissionColor, normalColor);
+                StartCoroutine(StasisCount());
             
-            direction = transform.position - hitPoint;
-            _rigidbody.AddForceAtPosition(direction * accumulatedForce, hitPoint, ForceMode.Impulse);
-            accumulatedForce = 0;
-            _audioSource.PlayOneShot(stasisEnd);
+                startParticleGroup.LookAt(playerPosition);
+                ParticleSystem[] particles = startParticleGroup.GetComponentsInChildren<ParticleSystem>();
+                foreach (ParticleSystem p in particles)
+                {
+                    p.Play();
+                }
 
-            _trailRenderer.startColor = particleColor;
-            _trailRenderer.endColor = particleColor;
-            _trailRenderer.emitting = true;
-            _trailRenderer.DOTime(0, 5).OnComplete(() => _trailRenderer.emitting = false);
+                break;
+            }
+            case false:
+            {
+                StopAllCoroutines();
+                DOTween.KillAll();
+                transform.GetChild(0).gameObject.SetActive(false);
+                _renderer.material.SetFloat(StasisAmount, 0);
+
+                endParticleGroup.LookAt(playerPosition);
+                ParticleSystem[] particles = endParticleGroup.GetComponentsInChildren<ParticleSystem>();
+                foreach (ParticleSystem p in particles)
+                {
+                    p.Play();
+                }
+
+                if (accumulatedForce < 0) return;
+            
+                direction = transform.position - hitPoint;
+                _rigidbody.AddForceAtPosition(direction * accumulatedForce, hitPoint, ForceMode.Impulse);
+                accumulatedForce = 0;
+                _audioSource.PlayOneShot(stasisEnd);
+
+                _trailRenderer.startColor = particleColor;
+                _trailRenderer.endColor = particleColor;
+                _trailRenderer.emitting = true;
+                _trailRenderer.DOTime(0, 5).OnComplete(() => _trailRenderer.emitting = false);
+                break;
+            }
         }
     }
 
@@ -109,13 +114,12 @@ public class StasisObject : MonoBehaviour
         transform.GetChild(0).rotation = Quaternion.LookRotation(direction);
 
         Color c = Color.Lerp(normalColor, finalColor, accumulatedForce / 50);
-        c.a = 255;
         transform.GetChild(0).GetComponentInChildren<MeshRenderer>().material.SetColor(Color1, c);
         _renderer.material.SetColor(EmissionColor, c);
         particleColor = c;
     }
 
-    public IEnumerator StasisWait()
+    private IEnumerator StasisCount()
     {
         for (int i = 0; i < 20; i++)
         {

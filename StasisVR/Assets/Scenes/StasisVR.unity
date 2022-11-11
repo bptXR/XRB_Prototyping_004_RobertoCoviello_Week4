@@ -2896,23 +2896,38 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8642046742886731457, guid: f4c6b8a9150846443bb712df6743b345,
         type: 3}
+      propertyPath: finalColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642046742886731457, guid: f4c6b8a9150846443bb712df6743b345,
+        type: 3}
+      propertyPath: normalColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642046742886731457, guid: f4c6b8a9150846443bb712df6743b345,
+        type: 3}
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 492000021}
     - target: {fileID: 8642046742886731457, guid: f4c6b8a9150846443bb712df6743b345,
         type: 3}
+      propertyPath: particleColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8642046742886731457, guid: f4c6b8a9150846443bb712df6743b345,
+        type: 3}
       propertyPath: particleColor.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8642046742886731457, guid: f4c6b8a9150846443bb712df6743b345,
         type: 3}
       propertyPath: particleColor.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8642046742886731457, guid: f4c6b8a9150846443bb712df6743b345,
         type: 3}
       propertyPath: particleColor.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8642046742886731468, guid: f4c6b8a9150846443bb712df6743b345,
         type: 3}
