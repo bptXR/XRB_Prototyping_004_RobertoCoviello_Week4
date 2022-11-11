@@ -7,13 +7,19 @@ public class SwordCollision : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Vector3 hitPoint;
     
-    private float _collisionForce = 3;
+    private float _collisionForce;
+    private Rigidbody _rigidBody;
 
     [Space] [Header("Particle Effects")] 
     [SerializeField] private GameObject hitParticle;
     [SerializeField] private GameObject stasisHitParticle;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip hitSound;
+    
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -25,8 +31,7 @@ public class SwordCollision : MonoBehaviour
             return;
     
         hitPoint = hit.point;
-        // _collisionForce = _rigidbody.velocity.magnitude;
-        // print(_collisionForce);
+        _collisionForce = _rigidBody.velocity.magnitude;
         hit.transform.GetComponent<StasisObject>().AccumulateForce(_collisionForce, hit.point);
         
         Instantiate(hitParticle, hit.point, Quaternion.identity);

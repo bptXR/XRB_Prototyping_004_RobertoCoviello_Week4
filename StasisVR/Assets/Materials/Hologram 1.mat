@@ -128,8 +128,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0, g: 2.6490889, b: 0.08542345, a: 0}
-    - _HologramTiling: {r: 50, g: 50, b: 0, a: 0}
-    - _MainColor: {r: 0.0046770885, g: 0.5471698, b: 0, a: 1}
+    - _FresnelColor: {r: 2.6490893, g: 2.5719497, b: 0, a: 0}
+    - _HologramTiling: {r: 10, g: 10, b: 0, a: 0}
+    - _MainColor: {r: 0.5230075, g: 0.54901963, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

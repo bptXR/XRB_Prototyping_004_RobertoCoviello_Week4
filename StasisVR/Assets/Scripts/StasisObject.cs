@@ -46,11 +46,6 @@ public class StasisObject : MonoBehaviour
     {
         activated = state;
         _rigidbody.isKinematic = state;
-        float noise = state ? 1 : 0;
-
-        _renderer.material.SetFloat(StasisAmount, 10);
-        _renderer.material.SetFloat(NoiseAmount, noise);
-        _renderer.material.DOFloat(1, NoiseAmount, 0.5f);
 
         switch (state)
         {
@@ -80,6 +75,8 @@ public class StasisObject : MonoBehaviour
                 ParticleSystem[] particles = endParticleGroup.GetComponentsInChildren<ParticleSystem>();
                 foreach (ParticleSystem p in particles)
                 {
+                    var pmain = p.main;
+                    pmain.startColor = particleColor;
                     p.Play();
                 }
 
@@ -90,6 +87,7 @@ public class StasisObject : MonoBehaviour
                 accumulatedForce = 0;
                 _audioSource.PlayOneShot(stasisEnd);
 
+                _renderer.material.SetFloat(NoiseAmount, 0);
                 _trailRenderer.startColor = particleColor;
                 _trailRenderer.endColor = particleColor;
                 _trailRenderer.emitting = true;
@@ -113,10 +111,10 @@ public class StasisObject : MonoBehaviour
         direction = transform.position - hitPoint;
         transform.GetChild(0).rotation = Quaternion.LookRotation(direction);
 
-        Color c = Color.Lerp(normalColor, finalColor, accumulatedForce / 50);
-        transform.GetChild(0).GetComponentInChildren<MeshRenderer>().material.SetColor(Color1, c);
-        _renderer.material.SetColor(EmissionColor, c);
-        particleColor = c;
+        Color color = Color.Lerp(normalColor, finalColor, accumulatedForce / 50);
+        transform.GetChild(0).GetComponentInChildren<MeshRenderer>().material.SetColor(Color1, color);
+        _renderer.material.SetColor(EmissionColor, color);
+        particleColor = color;
     }
 
     private IEnumerator StasisCount()
@@ -134,6 +132,7 @@ public class StasisObject : MonoBehaviour
             yield return new WaitForSeconds(wait);
             _audioSource.PlayOneShot(stasisSound);
             Sequence s = DOTween.Sequence();
+            _renderer.material.SetFloat(NoiseAmount, 1);
             s.Append(_renderer.material.DOFloat(.5f, StasisAmount, .05f));
             s.AppendInterval(.1f);
             s.Append(_renderer.material.DOFloat(.2f, StasisAmount, .05f));

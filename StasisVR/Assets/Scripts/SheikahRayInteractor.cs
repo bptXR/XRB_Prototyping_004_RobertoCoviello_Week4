@@ -29,8 +29,8 @@ using UnityEngine;
                 _meshRenderer = hit.transform.gameObject.GetComponent<MeshRenderer>();
                 _oldMaterial = _meshRenderer.material;
                 _meshRenderer.material = highlightMaterial;
-                _stasisObject = hit.transform.gameObject.GetComponent<StasisObject>();
-                _stasisObject.SetStasis(true);
+                // _stasisObject = hit.transform.gameObject.GetComponent<StasisObject>();
+                // _stasisObject.SetStasis(true);
                 _highlightApplied = true;
             }
             else
