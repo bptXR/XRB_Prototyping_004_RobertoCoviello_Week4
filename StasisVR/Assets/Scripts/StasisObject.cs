@@ -18,12 +18,15 @@ public class StasisObject : MonoBehaviour
     [SerializeField] private AudioClip stasisSound;
     [SerializeField] private AudioClip stasisStart;
     [SerializeField] private AudioClip stasisEnd;
+    [SerializeField] private AudioSource swordAudioSource;
+    [SerializeField] private AudioClip swordCollision;
 
-    private float _forceLimit = 100;
+    private float _forceLimit = 200;
     private AudioSource _audioSource;
     private Rigidbody _rigidbody;
     private TrailRenderer _trailRenderer;
     private MeshRenderer _renderer;
+    private float _damage;
 
     [Header("Particles")] 
     public Transform startParticleGroup;
@@ -86,6 +89,7 @@ public class StasisObject : MonoBehaviour
                 _rigidbody.AddForceAtPosition(direction * accumulatedForce, hitPoint, ForceMode.Impulse);
                 accumulatedForce = 0;
                 _audioSource.PlayOneShot(stasisEnd);
+                swordAudioSource.pitch = 1;
 
                 _renderer.material.SetFloat(NoiseAmount, 0);
                 _trailRenderer.startColor = particleColor;
@@ -107,6 +111,10 @@ public class StasisObject : MonoBehaviour
 
         accumulatedForce = Mathf.Min(accumulatedForce += amount, _forceLimit);
         hitPoint = point;
+
+        _damage += accumulatedForce;
+        swordAudioSource.pitch = 1 + _damage / 400;
+        swordAudioSource.PlayOneShot(swordCollision);
 
         direction = transform.position - hitPoint;
         transform.GetChild(0).rotation = Quaternion.LookRotation(direction);
