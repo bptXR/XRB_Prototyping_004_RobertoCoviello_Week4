@@ -7,7 +7,7 @@ public class StasisObject : MonoBehaviour
 {
     public bool activated;
     public Color particleColor;
-    
+
     [SerializeField] private float accumulatedForce;
     [SerializeField] private Vector3 direction;
     [SerializeField] private Vector3 hitPoint;
@@ -28,10 +28,9 @@ public class StasisObject : MonoBehaviour
     private MeshRenderer _renderer;
     private float _damage;
 
-    [Header("Particles")] 
-    public Transform startParticleGroup;
+    [Header("Particles")] public Transform startParticleGroup;
     public Transform endParticleGroup;
-    
+
     private static readonly int StasisAmount = Shader.PropertyToID("_StasisAmount");
     private static readonly int NoiseAmount = Shader.PropertyToID("_NoiseAmount");
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
@@ -57,7 +56,7 @@ public class StasisObject : MonoBehaviour
                 _audioSource.PlayOneShot(stasisStart);
                 _renderer.material.SetColor(EmissionColor, normalColor);
                 StartCoroutine(StasisCount());
-            
+
                 startParticleGroup.LookAt(playerPosition);
                 ParticleSystem[] particles = startParticleGroup.GetComponentsInChildren<ParticleSystem>();
                 foreach (ParticleSystem p in particles)
@@ -84,12 +83,13 @@ public class StasisObject : MonoBehaviour
                 }
 
                 if (accumulatedForce < 0) return;
-            
+
                 direction = transform.position - hitPoint;
                 _rigidbody.AddForceAtPosition(direction * accumulatedForce, hitPoint, ForceMode.Impulse);
                 accumulatedForce = 0;
-                _audioSource.PlayOneShot(stasisEnd);
+                _damage = 0;
                 swordAudioSource.pitch = 1;
+                _audioSource.PlayOneShot(stasisEnd);
 
                 _renderer.material.SetFloat(NoiseAmount, 0);
                 _trailRenderer.startColor = particleColor;
@@ -145,7 +145,7 @@ public class StasisObject : MonoBehaviour
             s.AppendInterval(.1f);
             s.Append(_renderer.material.DOFloat(.2f, StasisAmount, .05f));
         }
-        
+
         SetStasis(false);
     }
 

@@ -18,6 +18,8 @@ using UnityEngine;
 
             if (Physics.Raycast(transform.localPosition, transform.TransformDirection(Vector3.forward), out hit, 100, layerMask))
             {
+                if (hit.transform.gameObject.GetComponent<StasisObject>().activated) return;
+                
                 if (_highlightApplied && sheikah.hasActivated)
                 {
                     _stasisObject = hit.transform.gameObject.GetComponent<StasisObject>();
