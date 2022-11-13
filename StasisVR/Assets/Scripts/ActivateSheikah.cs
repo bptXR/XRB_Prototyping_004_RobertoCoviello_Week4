@@ -4,6 +4,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ActivateSheikah : XRGrabInteractable
 {
+    [SerializeField] private XRDirectInteractor rightHand;
+    [SerializeField] private XRDirectInteractor leftHand;
+
     [SerializeField] private SheikahRayInteractor sheikahRayInteractor;
     [SerializeField] private UniversalRendererData renderSettings;
     [SerializeField] private AudioSource audioSource;
@@ -15,8 +18,16 @@ public class ActivateSheikah : XRGrabInteractable
     {
         base.OnSelectEntered(args);
 
-        RenderSettings(true);
-        sheikahRayInteractor.enabled = true;
+        if (args.interactorObject == leftHand || args.interactorObject == rightHand)
+        {
+            RenderSettings(true);
+            sheikahRayInteractor.enabled = true;
+        }
+        else
+        {
+            RenderSettings(false);
+            sheikahRayInteractor.enabled = false;
+        }
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)
