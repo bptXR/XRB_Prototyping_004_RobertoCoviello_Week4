@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BearingPoint.Avatars.Local.RPM
+namespace RPM
 {
     public class LowerBodyAnimation : MonoBehaviour
     {

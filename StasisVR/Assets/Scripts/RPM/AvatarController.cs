@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace BearingPoint.Avatars.Local.RPM
+namespace RPM
 {
     [Serializable]
     public class MapTransform
