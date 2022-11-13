@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 9152069843897086167, guid: 0ed7e08ffc438f742b831b3cdb542065,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9152069843897086167, guid: 0ed7e08ffc438f742b831b3cdb542065,
         type: 3}
@@ -1806,7 +1806,7 @@ Transform:
   m_Children:
   - {fileID: 316433483}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &492000022
 MonoBehaviour:
@@ -2068,7 +2068,7 @@ Transform:
   - {fileID: 590807991}
   - {fileID: 1892743815}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
@@ -2150,7 +2150,7 @@ Transform:
   m_Children:
   - {fileID: 737575819}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &861460277
 AudioSource:
@@ -2479,7 +2479,7 @@ Transform:
   - {fileID: 410087041}
   - {fileID: 1243508118}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1827560692
 PrefabInstance:
@@ -2853,7 +2853,7 @@ Transform:
   m_Children:
   - {fileID: 832575519}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143112690
 GameObject:
