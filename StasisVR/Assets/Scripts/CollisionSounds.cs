@@ -7,7 +7,7 @@ public class CollisionSounds : MonoBehaviour
     [SerializeField] private AudioClip fallLow;
     [SerializeField] private AudioClip fallMedium;
     [SerializeField] private AudioClip fallHigh;
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Sword"))
