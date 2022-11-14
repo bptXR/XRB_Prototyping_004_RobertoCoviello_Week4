@@ -9,6 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/StasisVR.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: aa7dfd56ea8a02f4eaec88bc42da7d5a,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9a0dd3523b83c0f4cb0c575c6f33d8ed,
       type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: d5ca79b4393f1ef4aa1ad65d475c58cc,

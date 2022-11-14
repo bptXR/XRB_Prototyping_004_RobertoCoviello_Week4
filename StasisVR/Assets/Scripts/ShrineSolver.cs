@@ -11,28 +11,24 @@ public class ShrineSolver : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<StasisObject>())
+        if (!other.GetComponent<StasisObject>()) return;
+        objectCounter++;
+        if (objectCounter != counterThreshold) return;
+        audioSource.PlayOneShot(shrineSolvedSound);
+        foreach (var p in particleEffects)
         {
-            objectCounter++;
-            if (objectCounter != counterThreshold) return;
-            audioSource.PlayOneShot(shrineSolvedSound);
-            foreach (var p in particleEffects)
-            {
-                p.SetActive(true);
-            }
+            p.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<StasisObject>())
+        if (!other.GetComponent<StasisObject>()) return;
+        objectCounter--;
+        if (objectCounter == counterThreshold) return;
+        foreach (var p in particleEffects)
         {
-            objectCounter--;
-            if (objectCounter == counterThreshold) return;
-            foreach (var p in particleEffects)
-            {
-                p.SetActive(false);
-            }
+            p.SetActive(false);
         }
     }
 }
