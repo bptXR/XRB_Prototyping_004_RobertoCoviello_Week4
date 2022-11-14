@@ -14,13 +14,12 @@ public class ShrineSolver : MonoBehaviour
         if (other.GetComponent<StasisObject>())
         {
             objectCounter++;
-        }
-
-        if (objectCounter != counterThreshold) return;
-        audioSource.PlayOneShot(shrineSolvedSound);
-        foreach (var p in particleEffects)
-        {
-            p.SetActive(true);
+            if (objectCounter != counterThreshold) return;
+            audioSource.PlayOneShot(shrineSolvedSound);
+            foreach (var p in particleEffects)
+            {
+                p.SetActive(true);
+            }
         }
     }
 
@@ -29,12 +28,11 @@ public class ShrineSolver : MonoBehaviour
         if (other.GetComponent<StasisObject>())
         {
             objectCounter--;
-        }
-
-        if (objectCounter == counterThreshold) return;
-        foreach (var p in particleEffects)
-        {
-            p.SetActive(false);
+            if (objectCounter == counterThreshold) return;
+            foreach (var p in particleEffects)
+            {
+                p.SetActive(false);
+            }
         }
     }
 }
