@@ -7,6 +7,8 @@ TagManager:
   - LeftHand
   - FingerTip
   - RightHand
+  - Shrine
+  - Sword
   layers:
   - Default
   - TransparentFX
